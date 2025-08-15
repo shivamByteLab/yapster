@@ -14,7 +14,7 @@ const useDeleteMessage = () => {
       setLoading(true);
       if (selectedConversation) {
         const response = await axios.post(
-          `http://localhost:5050/api/delete/message`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/delete/message`,
           {
             id: messageId,
           },

@@ -2,12 +2,11 @@ import { useAuthContext } from "@/context/useAuthContext"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-// import toast from "react-hot-toast"
-// import { useAuthContext } from "../context/AuthContext"
+import toast from "react-hot-toast"
 
 const useSignUp =()=>{
     const [Loading, setLoading] = useState(false)
-    // const signUpURL ="api/auth/signup"
+    const signUpURL ="auth/signup"
     const router = useRouter()
 
     const {setAuthUser} = useAuthContext()
@@ -19,11 +18,8 @@ const useSignUp =()=>{
         if(!success) return false
         setLoading(true)
 
-        try {
-                // const formData = new FormData
-
-            
-                const data = await axios.post(`http://localhost:5050/api/auth/signup`,{
+        try {            
+                const data = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${signUpURL}`,{
                   name,
                   username,
                   avatar,
@@ -32,14 +28,14 @@ const useSignUp =()=>{
                 },{withCredentials:true})
             
                 if(!data){
-                  console.log("unable to signup")
+                  toast.error("unable to signup")
                 }
                 console.log(data)
               
               
             
             if(data.status==400){
-                console.error("Error while signing Up");
+                toast.error("Error while signing Up");
                 // throw data.error;
                 // throw new Error(data)
             }
@@ -49,8 +45,8 @@ const useSignUp =()=>{
 
             setAuthUser(data.data)
 
-        } catch (error) {
-            // toast.error(error.message)
+        } catch (error:any) {
+            toast.error(error.message)
         }finally{
             setLoading(false)
             router.push("/")
@@ -65,34 +61,34 @@ export default useSignUp
 function handleSignUpError({name,username,password,confirmPassword}:{name:string,username:string,password:string,confirmPassword:string}){
 
     if(!name && !username && !password && !confirmPassword){
-        // toast.error("Please fill all the fields")
+        toast.error("Please fill all the fields")
         return false
     }
 
     if(!name){
-        // toast.error("Please fill name")
+        toast.error("Please fill name")
         return false
     }
     if(!username){
-        // toast.error("Please fill username")
+        toast.error("Please fill username")
         return false
     }
     if(!password){
-        // toast.error("Please fill password")
+        toast.error("Please fill password")
         return false
     }
     if(!confirmPassword){
-        // toast.error("Please fill Confirm Password")
+        toast.error("Please fill Confirm Password")
         return false
     }
 
     if(password !== confirmPassword){
-        // toast.error("Password does not matched")
+        toast.error("Password does not matched")
         return false
     }
 
     if(password.length < 6){
-        // toast.error("Password should be atleast 6 characters")
+        toast.error("Password should be atleast 6 characters")
         return false
     }
 

@@ -10,7 +10,7 @@ const InputContainer = () => {
 
   useEffect(() => {
     inputRef.current?.focus();
-}, [setMessage])
+}, [message,Loading])
 
   const SendMessage = (e:FormEvent)=>{
     e.preventDefault()
@@ -18,7 +18,7 @@ const InputContainer = () => {
     try {
       sendMessage(message) 
     } catch (error) {
-      console.log(error)
+      
     }finally{
     }
     setMessage('')
@@ -30,8 +30,8 @@ const InputContainer = () => {
     <form onSubmit={SendMessage} className='w-full bg-[#1d232a] rounded-full px-3 flex items-center'>
       <Laugh className='cursor-pointer'/>
       <input ref={inputRef} value={message} onChange={(e)=>setMessage(e.target.value)} disabled={Loading} type="text" placeholder="Type here" className="input border-0 focus:outline-none flex flex-1 w-full " />
-    </form>
       <SendHorizontal onClick={SendMessage} className='w-8 h-8 cursor-pointer'/>
+    </form>
     </div>
   )
 }

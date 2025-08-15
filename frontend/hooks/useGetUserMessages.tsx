@@ -11,8 +11,8 @@ const useGetUserMessages =()=>{
         const getMessages = async()=>{
             setLoading(true)
             const endpoint = selectedConversation?.type === "group"
-          ? `http://localhost:5050/api/${selectedConversation?.id}/messages`
-          : `http://localhost:5050/api/get/${selectedConversation?.id}`;
+          ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/${selectedConversation?.id}/messages`
+          : `${process.env.NEXT_PUBLIC_BACKEND_URL}/get/${selectedConversation?.id}`;
 
             if(!selectedConversation?.id){
                 return

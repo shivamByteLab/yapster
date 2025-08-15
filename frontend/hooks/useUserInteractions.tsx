@@ -1,23 +1,21 @@
 'use client'
 import useChats from "@/store/useChats";
-import useConversation from "@/store/useConversation";
-import { ChatType } from "@/types/ChatType";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 
 
 const useUserInteractions = () => {
   const [Loading, setLoading] = useState(false);
   const {chats:Chats,setChats}= useChats()
-  const {messages} = useConversation()
 
   useEffect(() => {
     async function getUserInteraction() {
       setLoading(true);
       try {
         const res = await axios.get(
-          "http://localhost:5050/api/user/user-interactions/",
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/user-interactions/`,
           { withCredentials: true }
         );
 
@@ -25,9 +23,13 @@ const useUserInteractions = () => {
           throw new Error(res.statusText);
         }
 
-        setChats(res.data.data); // Properly set the state here
+        setTimeout(()=>{
+          setChats(res.data.data); // Properly set the state here
+        },1000)
       } catch (error) {
-        console.log("Error fetching user interactions:", error);
+        toast.error("Error fetching user chats",{
+          duration:7000
+        })
       } finally {
         setLoading(false);
       }

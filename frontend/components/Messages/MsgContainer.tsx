@@ -7,6 +7,7 @@ import useConversation from "@/store/useConversation";
 import Banner from "./Banner";
 import useGetUserMessages from "@/hooks/useGetUserMessages";
 import { Skeleton } from "../ui/skeleton";
+import { ScrollArea } from "../ui/scroll-area";
 
 const MsgContainer = () => {
   const { isHidden } = useHide();
@@ -22,13 +23,16 @@ const MsgContainer = () => {
       {selectedConversation && (
         <>
           <Header />
-          {!Loading && (
+          {!Loading &&  (
             <>
-              <Messages />
+            <ScrollArea  className="w-full h-full z-10">
+              
+              {messages && <Messages />}
+            </ScrollArea>
               <InputContainer />
             </>
           )}
-          {Loading && messages.length >0 &&  [...Array(3)].map((_, idx) => <Skeleton key={idx} />)}
+          {Loading &&   [...Array(3)].map((_, idx) => <Skeleton key={idx} />)}
         </>
       )}
 

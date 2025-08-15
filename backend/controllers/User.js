@@ -117,6 +117,7 @@ export const CraeteNewUserConversations = async (req, res) => {
       userIDs: {
         hasEvery: [senderId, receiverId], // Check if both sender and receiver are participants
       },
+      isGroup:false
     },
   });
 
@@ -135,36 +136,6 @@ export const CraeteNewUserConversations = async (req, res) => {
 
 };
 
-// export const getUserGroup = async (req, res) => {
-//   const userId  = req.user.id;
-
-//   try {
-//     const conversations = await prisma.conversation.findMany({
-//       where: {
-//         userIDs: {
-//           has: userId, // Check if userId is in userIDs array
-//         },
-//       },
-//       include: {
-//         GroupRole: {
-//           include: {
-//             user: true, // Include user details in the GroupRole
-//           },
-//         },
-//         Message: true, // Include messages in the conversation
-//         groupSettings: true, // Include group settings if needed
-//       },
-//     });
-
-//     if (!conversations || conversations.length === 0) {
-//       return res.status(404).json({ error: "No conversations found for the user." });
-//     }
-
-//     res.status(200).json({ data: conversations });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
 export const getConversationsAndGroupsByUser = async (req, res) => {
   const userId = req.user.id; // Current user ID
 

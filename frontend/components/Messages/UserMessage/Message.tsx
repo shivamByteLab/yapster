@@ -19,7 +19,7 @@ const Message = ({ message }: { message: MessageType }) => {
       <div className="chat-header mx-2">
         <span className="text-xs opacity-50"></span>
       </div>
-      <div className="chat-bubble pb-4">
+      <div className={`chat-bubble ${fromMe ? "" : "chat-bubble-accent"} max-w-[80%]`}>
         {message.text}
         <time
           className={`absolute text-xs tracking-wide bottom-0 ${

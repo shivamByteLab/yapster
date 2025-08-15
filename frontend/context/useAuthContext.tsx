@@ -48,8 +48,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const storedUser = localStorage.getItem("user-info");
     if (storedUser) {
       setAuthUser(JSON.parse(storedUser));
-    }else{
-      setAuthUser({...authUser,success:false})
     }
   }, []);
 

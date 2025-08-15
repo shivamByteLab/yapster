@@ -17,7 +17,7 @@ const useFetchUsers = (searchTerm: string) => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`http://localhost:5050/api/user/search?query=${searchTerm}`, {withCredentials:true});
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/search?query=${searchTerm}`, {withCredentials:true});
         setSearchedUsers(response.data);
       } catch (err: any) {
         setError(err.response?.data?.error || "Failed to fetch users.");

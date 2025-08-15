@@ -7,6 +7,8 @@ interface HideContextType {
   setIsHidden: (value: boolean) => void;
   showOptions:boolean;
   setShowOptions: (value: boolean) => void;
+  showSetting:boolean;
+  setShowSetting: (value: boolean) => void;
 }
 
 // Create the context with an initial value of `null`
@@ -16,10 +18,11 @@ const HideContext = createContext<HideContextType | null>(null);
 export const HideProvider = ({ children }: { children: ReactNode }) => {
   const [isHidden, setIsHidden] = useState<boolean>(false);
   const [showOptions, setShowOptions] = useState(false);
+  const [showSetting, setShowSetting] = useState(false);
 
  
   return (
-    <HideContext.Provider value={{ isHidden, setIsHidden,setShowOptions,showOptions}}>
+    <HideContext.Provider value={{ isHidden, setIsHidden,setShowOptions,showOptions,showSetting,setShowSetting}}>
       {children}
     </HideContext.Provider>
   );

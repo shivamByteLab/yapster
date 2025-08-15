@@ -126,7 +126,11 @@ const SignUp: React.FC = () => {
             className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
             disabled={Loading}
           >
-            {Loading ? "Signing Up..." : "Sign Up"}
+           {Loading ? (
+              <span className="loading loading-bars loading-lg"></span>
+            ) : (
+              "Sign Up"
+            )}
           </button>
           <div className="form-control w-full max-w-xs">
             <div className="label">

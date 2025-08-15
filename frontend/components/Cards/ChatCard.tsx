@@ -35,7 +35,7 @@ const ChatCard = ({ user }: { user: ChatType }) => {
         {user.avatar ? (
           <img src={user.avatar} alt={`${user.name}'s profile`} />
         ) : (
-          <div className="flex items-center justify-center w-full h-full text-white font-bold">
+          <div className="flex items-center justify-center w-full h-full  font-bold">
             {user.type === "group" && user.name.charAt(0).toUpperCase()}
           </div>
         )}

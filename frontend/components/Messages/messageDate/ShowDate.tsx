@@ -19,7 +19,7 @@ const ShowDateWithMessage = () => {
   }, [messages]);
 
 
-  if (messages.length===0) return (
+  if (messages?.length===0) return (
     <p className="text-center">
       Send a message to start the conversation
     </p>

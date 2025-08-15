@@ -47,6 +47,7 @@ export const findOrCreateConversation = async (senderID, receiverID) => {
                 userIDs: {
                     hasEvery: [senderID, receiverID], // Check if both sender and receiver are participants
                 },
+                isGroup:false
             },
         });
 

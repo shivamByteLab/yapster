@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import useLogin from "@/hooks/useLogin";
 import { useAuthContext } from "@/context/useAuthContext";
 import { useRouter } from "next/navigation";
@@ -72,12 +72,16 @@ const SignIn = () => {
             type="submit"
             className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
           >
-            Sign In
+            {Loading ? (
+              <span className="loading loading-bars loading-lg"></span>
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
         <div className="text-center mt-6 text-sm">
           <p>
-             Create an account?{" "}
+            Create an account?{" "}
             <Link href="/signup" className="text-blue-500 hover:underline">
               Sign Up
             </Link>

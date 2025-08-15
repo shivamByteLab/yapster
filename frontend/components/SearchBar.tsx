@@ -14,7 +14,7 @@ const SearchBar = () => {
     }, [])
 
   return (
-    <div className="rounded-md w-full sticky top-12  z-10 bg-inherit  mx- px-1 h-8 border-b-[2.5px] focus-within:border-b-green-600 border-b-[#656565] flex">
+    <div className="rounded-md  sticky top-20 mt-4 mx-1 z-10 bg-inherit  px-2 h-8 border-b-[2.5px] focus-within:border-b-green-600 border-b-[#656565] flex">
         <div className="w-6 p-1 flex items-center">
         <SearchIcon/>
         </div>

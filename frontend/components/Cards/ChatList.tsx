@@ -1,33 +1,22 @@
 import ChatCard from "./ChatCard";
 import { ScrollArea } from "../ui/scroll-area";
-import useUserInteractions from "@/hooks/useUserInteractions";
-import SortChatItemsByLatestActivity from "@/helper/SortChatItemsByLatestActivity"
+import SortChatItemsByLatestActivity from "@/helper/SortChatItemsByLatestActivity";
 import useChats from "@/store/useChats";
 
 const ChatList = () => {
-  // const { Loading, Chats } = ;
-  const {chats:Chats} = useChats()
-  
-  // if (Loading) {
-  //   return <span className="loading loading-dots loading-lg"></span>;
-  // }
+  const { chats: Chats } = useChats();
 
-  if (!Chats) {
-    return <p>No interactions found.</p>;
+  if (Chats?.length === 0 || !Chats) {
+    return <span className="loading loading-dots loading-lg"></span>;
   }
 
-  const SortChatItems = SortChatItemsByLatestActivity(Chats)
-
-// console.log(Chats)
+  const SortChatItems = SortChatItemsByLatestActivity(Chats);
 
   return (
     <ScrollArea>
-      <div className="w-full mx-auto grid gap-4 mt-6 text-white rounded-lg">
-        {SortChatItems.map((chat:any, index: number) => (
-          <ChatCard
-            key={chat.id}
-            user={chat}
-          />
+      <div className="w-full mx-auto grid gap-4 mt-6  rounded-lg">
+        {SortChatItems.map((chat: any, index: number) => (
+          <ChatCard key={chat.id} user={chat} />
         ))}
       </div>
     </ScrollArea>

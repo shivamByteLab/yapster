@@ -1,6 +1,5 @@
 import { ChatType } from '@/types/ChatType';
 import { MessageType } from '@/types/messagesType';
-import { Users } from '@/types/UsersType';
 import { create } from 'zustand';
 
 interface ConversationState {
@@ -9,6 +8,9 @@ interface ConversationState {
 
   messages: MessageType[];
   setMessages: (messages: MessageType[]) => void;
+
+  allMembers:GroupMemberType[];
+  setAllMembers:(allMembers:GroupMemberType[])=>void;
 }
 
 const useConversation = create<ConversationState>((set) => ({
@@ -17,6 +19,10 @@ const useConversation = create<ConversationState>((set) => ({
 
   messages: [],
   setMessages: (messages) => set({ messages }),
+
+  allMembers:[],
+  setAllMembers:(allMembers)=>set({allMembers})
+
 }));
 
 export default useConversation;

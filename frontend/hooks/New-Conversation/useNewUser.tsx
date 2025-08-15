@@ -12,16 +12,17 @@ const useNewUser = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5050/api/user/newConversation/${id}`,{},{withCredentials:true})
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/newConversation/${id}`,{},{withCredentials:true})
             
-            if(!response.data){
-                return
+            if(!response.data.data){
+                console.log(response)
             }
+            console.log(response)
 
             return true
 
         } catch (error) {
-            return
+            throw new Error("Unable to add new user")
         }finally{
             setLoading(false)
         }

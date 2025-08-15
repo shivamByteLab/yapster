@@ -6,6 +6,7 @@ import useNewUser from "@/hooks/New-Conversation/useNewUser";
 import useConversation from "@/store/useConversation";
 import { ChatType } from "@/types/ChatType";
 import useChats from "@/store/useChats";
+import toast from "react-hot-toast";
 
 const UserSearch = () => {
   const { searchTerm, setSearchTerm } = useSearchUser();
@@ -26,11 +27,10 @@ const UserSearch = () => {
           if (res) {
             setSearchTerm("");
           }
-        } catch (error) {
-          return;
+        } catch (error:any) {
+         toast.error(error);
         }
       };
-      console.log(newUser);
       
       addUser();
     }

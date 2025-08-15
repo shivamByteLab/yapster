@@ -5,11 +5,17 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { useHide } from "@/context/useHideProvider";
+import { Separator } from './ui/separator';
 
 const UserChatHeader = () => {
+  const {showSetting,setShowSetting} = useHide()
   return (
-    <div className="flex sticky top-0 z-10 bg-inherit justify-between p-2">
-      <h1 className="text-3xl">Chats</h1>
+    <div className="flex sticky top-0 z-1 light border-b border-b-white justify-between p-2">
+     <div className="flex items-center">
+            <img width={50} height={50} src="logo.png" alt="Logo"/>
+            <h1 className="">Chats</h1>
+          </div>
        
       <div className="flex gap-5">
           <Tooltip>
@@ -25,7 +31,7 @@ const UserChatHeader = () => {
             </TooltipContent>
           </Tooltip>
           <Tooltip>
-          <TooltipTrigger> <Settings size={18} absoluteStrokeWidth /></TooltipTrigger>
+          <TooltipTrigger> <Settings onClick={()=>setShowSetting(!showSetting)} size={18} absoluteStrokeWidth /></TooltipTrigger>
             <TooltipContent>
               <p>Settings</p>
             </TooltipContent>

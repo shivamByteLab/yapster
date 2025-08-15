@@ -14,7 +14,7 @@ const useSendMessage = () => {
       setLoading(true);
       if (selectedConversation && selectedConversation?.type === "group") {
         const response = await axios.post(
-          `http://localhost:5050/api/send-group/${selectedConversation?.id}`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/send-group/${selectedConversation?.id}`,
           {
             text: message,
           },

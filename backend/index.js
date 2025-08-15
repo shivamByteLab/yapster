@@ -1,6 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
+import cors from "cors";
 
 
 import userRoutes from './routes/userRoutes.js'
@@ -17,11 +18,25 @@ const PORT = process.env.PORT || 5000
 dotenv.config();
 
 
-import cors from "cors";
+// Define dynamic allowed origins
+const allowedOrigins = [
+    "http://localhost:3000", // Localhost development
+    "https://61xqvxr9-3000.inc1.devtunnels.ms", // Dev tunnel for port forwarding
+    "https://*.devtunnels.ms", // Wildcard for all Dev Tunnels subdomains
+  ];
+  
+
 app.use(cors({
-    origin: "http://localhost:3000", // Frontend URL
-    credentials: true, // Allow credentials (cookies)
-  }));
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.some((allowed) => origin.includes(allowed))) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS policy: Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
